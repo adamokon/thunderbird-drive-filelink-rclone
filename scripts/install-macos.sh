@@ -46,10 +46,13 @@ binary.mkdir(parents=True, exist_ok=True)
 for name, script in [('tb-drive-configure', 'configure.sh'), ('tb-drive-upload', 'upload.sh')]:
     dest = binary / name
     if dest.exists() or dest.is_symlink():
-        if not dest.is_symlink() or dest.resolve() != (cli / script).resolve():
+        owned_link = dest.is_symlink() and dest.resolve() == (cli / script).resolve()
+        owned_wrapper = not dest.is_symlink() and dest.is_file() and '# Managed by thunderbird-drive-filelink' in dest.read_text()
+        if not owned_link and not owned_wrapper:
             raise SystemExit(f'Refusing to replace existing command: {name}')
         dest.unlink()
-    dest.symlink_to(cli / script)
+    dest.write_text('#!/bin/sh\n# Managed by thunderbird-drive-filelink\nexec ' + shlex.quote(str(cli / script)) + ' "$@"\n')
+    dest.chmod(0o700)
 print('Zainstalowano lokalny pomocnik i komendy tb-drive-configure / tb-drive-upload.')
 print('XPI: ' + str(next((root / 'dist').glob('*.xpi'))))
 PY

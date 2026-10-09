@@ -9,6 +9,8 @@ for name in ('tb-drive-configure', 'tb-drive-upload'):
     target = home / '.local/bin' / name
     if target.is_symlink() and target.resolve().is_relative_to(install):
         target.unlink()
+    elif target.is_file() and '# Managed by thunderbird-drive-filelink' in target.read_text():
+        target.unlink()
 manifest = home / 'Library/Mozilla/NativeMessagingHosts/org.thunderbird.drive_filelink_rclone.json'
 manifest.unlink(missing_ok=True)
 if install.exists():

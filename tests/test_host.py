@@ -84,6 +84,14 @@ class HostTests(unittest.TestCase):
     def test_no_arbitrary_operation(self):
         with self.assertRaises(host.UserError): self.bridge.dispatch({'action': 'delete', 'path': '/etc/passwd'})
 
+    def test_reauthorization_opens_only_fixed_local_script(self):
+        with patch.object(host.subprocess, 'run') as launch:
+            result = self.bridge.dispatch({'action': 'reauthorize', 'path': '/untrusted'})
+            self.assertTrue(result['opened'])
+            args = launch.call_args.args[0]
+            self.assertEqual(args[:3], ['/usr/bin/open', '-a', 'Terminal'])
+            self.assertEqual(Path(args[3]), Path(host.__file__).resolve().parent / 'reauthorize.command')
+
     def test_rclone_is_killed_when_host_is_interrupted(self):
         bridge = host.Bridge(self.bridge.settings)
         process = unittest.mock.Mock()
