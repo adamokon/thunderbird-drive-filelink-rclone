@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><title>Google Drive Filelink</title><link rel="stylesheet" href="management.css"></head>
+<body>
+<h1>Google Drive przez rclone</h1>
+<p>Wybrany załącznik zostanie przesłany do Drive. Thunderbird umieści link w treści wiadomości.</p>
+<p><strong>Każdy posiadający link będzie mógł odczytać ten plik.</strong> Pozostałe pliki i foldery Drive nie zostaną udostępnione. Link nie ma hasła ani automatycznego wygaśnięcia.</p>
+<p>Najpierw uruchom lokalną konfigurację Google Drive zgodnie z instrukcją projektu. Logujesz się w przeglądarce Google; nie wpisuj tutaj hasła ani tokenów.</p>
+<button id="check">Sprawdź połączenie</button>
+<button id="reauthorize">Ponownie zaloguj do Google Drive</button>
+<p id="status" role="status"></p>
+<label><input type="checkbox" id="consent"> Włączam przesyłanie wybranych plików i udostępnianie ich każdemu posiadającemu link.</label>
+<p><button id="save">Zapisz</button></p>
+<p>Usunięcie załącznika z wiadomości nie usuwa pliku z Drive. Dostęp cofniesz w Drive: Udostępnij → Dostęp ogólny → Ograniczony.</p>
+<script src="management.js"></script></body></html>

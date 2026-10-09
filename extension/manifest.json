@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "Drive Filelink via rclone",
+  "version": "0.1.0",
+  "description": "Upload Filelink attachments to Google Drive through a local rclone helper.",
+  "browser_specific_settings": {"gecko": {"id": "drive-filelink-rclone@local.invalid", "strict_min_version": "128.0"}},
+  "permissions": ["nativeMessaging", "storage"],
+  "background": {"scripts": ["background.js"]},
+  "cloud_file": {"name": "Google Drive (rclone)", "management_url": "management.html", "reuse_uploads": false},
+  "icons": {"48": "icon.svg", "96": "icon.svg"}
+}

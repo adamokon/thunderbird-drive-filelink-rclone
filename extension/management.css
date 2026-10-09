@@ -1,0 +1,4 @@
+:root { color-scheme: light dark; font: 15px system-ui, sans-serif; }
+body { max-width: 680px; padding: 12px; line-height: 1.5; }
+h1 { font-size: 1.3rem; }
+button { padding: 7px 14px; cursor: pointer; }
