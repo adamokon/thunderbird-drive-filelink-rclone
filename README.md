@@ -3,8 +3,11 @@
 Dodatek Thunderbird przesyłający załączniki do Google Drive przez lokalny rclone.
 Thunderbird automatycznie wstawia link do pliku w treści e-maila.
 
-**Status: wersja 0.1.0, wczesna wersja dla macOS.** Testy używają danych syntetycznych
-i atrap rclone. Pełny test z Google Drive wymaga konfiguracji własnego konta OAuth.
+**Status: wersja 0.1.0, wczesna wersja dla macOS.** W dniu 2026-10-21 potwierdzono
+pełny test z rzeczywistym Google Drive i dostarczeniem wiadomości do tego samego konta.
+Sprawdzono również anonimowe pobranie pliku oraz brak publicznych uprawnień folderów.
+Testy automatyczne używają danych syntetycznych i atrap rclone.
+Każda instalacja wymaga konfiguracji własnego konta OAuth.
 Projekt nie jest powiązany z Google ani zespołem Thunderbird.
 
 ## Jak działa
@@ -29,9 +32,10 @@ Wymagania: Thunderbird 128+, Python 3.10+, rclone, wolne miejsce na tymczasową
 kopię pliku. Maksymalny rozmiar załącznika: 5 GiB. Node.js jest potrzebny tylko do testów.
 
 ```bash
-bash scripts/test.sh
 bash scripts/install-macos.sh
 ```
+
+Opcjonalnie, mając także Node.js, uruchom przed instalacją `bash scripts/test.sh`.
 
 W Thunderbird otwórz **Dodatki i motywy → koło zębate → Zainstaluj dodatek z pliku**
 i wybierz `dist/drive-filelink-rclone-0.1.0.xpi`. To lokalny pakiet, bez recenzji ATN.
@@ -70,6 +74,7 @@ lokalną konfigurację; dopiero upload sprawdza ważność zgody i łączność 
   ani obfuscation. HTTPS do Google obsługuje rclone.
 
 Szczegóły: [SECURITY.md](SECURITY.md) i [architektura](docs/ARCHITECTURE.md).
+Zasady przetwarzania danych: [PRIVACY.md](PRIVACY.md).
 
 ## Cofnięcie udostępnienia i przechowywanie
 
@@ -105,6 +110,7 @@ ustawieniach bezpieczeństwa konta Google.
 `bash scripts/test.sh` uruchamia testy protokołu, kontroli dostępu i przesyłania
 bloków oraz buduje powtarzalny XPI. Budowanie nie korzysta z danych użytkownika.
 Zmiany: [CHANGELOG.md](CHANGELOG.md). Wkład: [CONTRIBUTING.md](CONTRIBUTING.md).
+Zweryfikowany przebieg testu: [docs/VALIDATION.md](docs/VALIDATION.md).
 Kod nowego projektu jest na licencji MIT. Badany dodatek CloudLink nie jest
 dołączany ani instalowany. [Podsumowanie jego audytu](docs/CLOUDLINK_AUDIT.md).
 
