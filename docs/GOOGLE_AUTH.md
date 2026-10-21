@@ -46,6 +46,9 @@ na **In production**, zgodnie z wymaganiami Google. To zmiana statusu klienta
 OAuth; nie oznacza publikacji Twoich plików ani kodu na GitHub. Wymogi weryfikacji
 zależą od rodzaju aplikacji, zakresów i sposobu dystrybucji.
 
+Po przełączeniu na **In production** wykonaj ponowne logowanie, aby otrzymać nowy
+token zamiast polegać na tokenie wydanym podczas Testing.
+
 W panelu Filelink kliknij **Ponownie zaloguj do Google Drive**. Pomocnik otworzy
 Terminal z `rclone config reconnect tbdrive:`. Logowanie odbywa się w przeglądarce.
 Po zakończeniu kliknij **Sprawdź połączenie**. Nie zmieniaj `drive.file` na `drive`.

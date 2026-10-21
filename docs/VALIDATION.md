@@ -35,9 +35,12 @@ odmian Google Workspace, długoterminowego odświeżania tokenów ani wszystkich
 Thunderbirda. Mały plik potwierdza przebieg funkcjonalny, nie wydajność dużych plików.
 Anulowanie i błędy są objęte testami automatycznymi z atrapami.
 
-Test korzystał z aplikacji OAuth w trybie **Testing**. W tym trybie refresh token
-może wygasnąć po 7 dniach. Tryb produkcyjny wymaga uzupełnienia danych aplikacji
-w Google Auth Platform; patrz [GOOGLE_AUTH.md](GOOGLE_AUTH.md).
+Pierwszy upload przeprowadzono w trybie OAuth **Testing**. Następnie tego samego
+dnia przełączono aplikację na **In production** i zakończono ponowną autoryzację.
+Po zapisaniu nowego tokenu potwierdzono zakres `drive.file`, dostęp przez API do
+pliku testowego oraz gotowość pomocnika Native Messaging. Siedmiodniowy limit
+trybu Testing nie dotyczy już tego nowego połączenia. Token nadal może zostać
+cofnięty lub wygasnąć z innych przyczyn; patrz [GOOGLE_AUTH.md](GOOGLE_AUTH.md).
 
 Adres konta, rzeczywisty URL pliku, identyfikatory Google Cloud, logi OAuth i zrzuty
 ekranu z prywatnego konta celowo pozostawiono poza publicznym repozytorium.
